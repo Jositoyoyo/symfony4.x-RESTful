@@ -1,0 +1,76 @@
+security:  
+    encoders:  
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
+            
+        App\Entity\User\User:
+            algorithm: bcrypt
+            cost: 12
+            
+    providers:
+        chain_provider:
+            chain:
+                providers: [in_memory, database]
+                
+        in_memory:
+            memory:
+                users:
+                    # Usuario por defecto en la instalacion
+                    admin:
+                        password: $2y$12$gYrLxRBYpmNuIt5UBQnpmu.B8N14kFqBlF2z4v4NeGU5d7rKdC4GK
+                        roles: 'ROLE_SUPER_ADMIN'
+        database:
+            entity:
+                class: App\Entity\User\User
+                property: username 
+                
+    firewalls:
+        
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false            
+            
+        main:
+            anonymous: ~
+            provider: chain_provider
+            stateless: false
+            access_denied_url: login
+            switch_user: true
+            
+            form_login:
+                login_path: login
+                check_path: login
+                always_use_default_target_path: true
+                default_target_path:            admin-index
+                csrf_token_generator: security.csrf.token_manager
+                
+            logout:
+                path:   logout
+                target: login
+            
+                     
+    role_hierarchy:
+        # Puede publicar cursos y crear categorias
+        ROLE_PUBLISHER: ROLE_USER 
+        # Puede gestionar los contactos pero no borrar ni crear
+        ROLE_ADMIN: ROLE_PUBLISHER 
+        #Todo lo demas 
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]      
+            
+    access_control:
+        
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        
+        - { path: ^/admin, roles: ROLE_PUBLISHER }
+        - { path: ^/admin/item/*, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/admin/user/*, roles: ROLE_SUPER_ADMIN }
+        
+        - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(item|items)/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #cambiar
+        - { path: ^/(folder|folders)/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+                   
+ 

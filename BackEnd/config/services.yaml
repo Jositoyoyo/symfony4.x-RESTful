@@ -1,0 +1,54 @@
+parameters:
+    locale: 'en'
+
+imports:
+    - { resource: 'parameters.yaml' }
+    
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                    
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Tests}'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+        
+    # listeners        
+    App\EventListener\ExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
+    App\EventListener\EntityListener\:
+        resource: '../src/EventListener/EntityListener/*'
+        autowire: true      
+        autoconfigure: true 
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            
+            
+    # repository
+    App\Repository\:
+        resource: '../src/Repository'
+        autowire: true
+        public: true
+        arguments:
+            $em: '@doctrine.orm.entity_manager'
+            
+          
+    #mailer      
+    mailer:
+        class: App\Service\Mailer\Single
+        autowire: true
+        public: true
+        
+    mailerMultipleUsers:
+        class: App\Service\Mailer\MailerMultipleUsers
+        autowire: true
+        public: true
+        
+    

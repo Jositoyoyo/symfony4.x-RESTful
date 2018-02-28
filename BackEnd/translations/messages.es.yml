@@ -1,0 +1,51 @@
+welcome: Bienvenido
+username: Nombre de usuario
+password: Contraseña
+password-repeat: Repite contraseña
+login: Login
+error-to-login: Error al introducir los datos
+session-start: Iniciar Sesion
+logout-session: Cerrar sesion
+user-edit: Editar usuario
+data-save-success: Datos guardados con exito
+name: Nombre
+last-name: Apellidos
+email: Correo electronico
+data-save: Datos guardados con exito
+register-success: Usuario registrado con exito
+# menu
+menu: menu
+
+# user
+my-account: Mi perfil
+users: Usuarios
+create-account: Crear cuenta
+redister-success: Registro realizado con exito !
+register-send-email: Revisa tu correo ahora donde recibiras tus datos de usuarios y la contraseña que has elegido.
+user-edit-account: Editar perfil
+
+# item
+item-new: Nuevo item
+title: Titulo
+intro: Introduccion(*)
+Publish: Publicar
+items: Items
+last-items: Ultimos cursos
+    
+# category
+category-new: Nueva categoria
+category: Categoria
+categories: Categorias
+body: Cuerpo
+
+#login, logout y register
+register: Registrarme
+
+#common
+new: Nueva
+image-cover: Cover
+home: Home
+required: Campo requerido
+send-email: Enviar correo
+save: Guardar
+back: Volver

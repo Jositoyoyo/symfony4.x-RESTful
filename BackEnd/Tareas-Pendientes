@@ -1,0 +1,54 @@
+Items
+-------------------------------------------
+El suepra dmin elige los usuarios que pubican
+REdedigir al admin
+TErminar admin
+
+-------------------------------------------
+Items Destacados en la portada*
+Items relacionados al ver su contenido*
+Ultimos items publicados*
+------------------------------------------
+Traducir todo*
+Gestion de los errores en platillas personalizadas !!*
+Eventos y registro en log
+Roles, acceso y permisos*
+Paginas estaticas*
+Terminar notificaciones y log del sistema*
+--------------------------------------------
+carpetas y usuarios
+--------------------------------------------
+filtar y paginar el resultado de los intems
+--------------------------------------------
+Login
+--------------------------------------------
+Ventana modal
+
+Features
+--------------------------------------------
+Añadir noticias, grupos y eventos
+Permitir  comentarios 
+Permitir tags
+Envio de correos y mensajes entreusuarios
+Añadir Eventos ( enviar email al publicar contenido) para el admnistrador
+Borrar imagenes *
+añadir Breakdum
+-------------------------------------------
+--------------------------------------
+Commons columns
+--------------------------------------
+id = id
+Title, name ect = name
+slug = slug
+body = content
+file
+Image
+columnA(email,tel)
+ColumnB(email,tel)
+--------------------------------------
+Eventos ... 
+errores
+Nuevo usuario, item, carpeta
+
+
+
