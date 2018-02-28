@@ -7,19 +7,4 @@ twig:
     strict_variables: '%kernel.debug%'
     
     globals:
-        web-name:
-        logo-img:
-            
-        default_avatar_img: '' 
-        default_item_img: '%http_image_item_dir%'
-        default_folder_img: '%http_image_folder_dir%'
-        
-        folder_img: '%default_folder_img%'
-        
-        
-        http_image_folder_dir: '%http_image_folder_dir%'
-        http_image_item_dir: '%http_image_item_dir%'
-        http_image_avatar_dir: '%http_image_avatar_dir%'
-        
-
 

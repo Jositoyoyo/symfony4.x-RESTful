@@ -1,36 +1,8 @@
-parameters:
-    
+parameters:    
     locale: 'es'
     show_default_maxResults: 30 
-    default_role_register: 'ROLE_USER'
-    default_user_register_enable: true
-    site_name: symfony4
+    site_name: symfony4 RESTful
         
-    #default email parameters
-    admin_email: admin@example.com
-    site_email: site@example.com
-    signature: symfony4.example.com
-    default_subject: 'Tienes un nuevo correo de %site_name%'
-    
-    #notifications
-    send_on_eception_event: true
-    send_on_register_user:  true
-    send_on_new_item: true
-       
-    #defaults category and image
-    category_dir: '%kernel.project_dir%/public/uploads/images/category'
-    http_image_category_dir: 'uploads/images/category/'
-    default_category_img: 562759e1b0805ad6fac28cc175cc49c0.png
-    
-    avatar_dir: '%kernel.project_dir%/public/uploads/images/avatar'
-    http_image_avatar_dir: 'uploads/images/avatar/'
-    default_avatar_img: 562759e1b0805ad6fac28cc175cc49c0.png
-    
-    item_dir: '%kernel.project_dir%/public/uploads/images/item'
-    http_image_item_dir: 'uploads/images/item/'
-    default_item_img: 562759e1b0805ad6fac28cc175cc49c0.png
-    
-    default_folder_img:
-    http_image_folder_dir: 'uploads/images/category/'
+
 
     

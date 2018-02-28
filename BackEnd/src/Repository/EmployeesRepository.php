@@ -7,7 +7,7 @@ use App\Entity\Item;
 
 use Doctrine\ORM\EntityManager;
 
-class UserRepository {
+class EmployeesRepository {
 
     private $em;
 
