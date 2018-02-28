@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="employees", indexes={@ORM\Index(name="fk_employees_department_idx", columns={"department_dept"})})
  * @ORM\Entity
  */
-class Employees
+class Employees implements \JsonSerializable
 {
     /**
      * @var int
@@ -65,6 +65,18 @@ class Employees
      * })
      */
     private $departmentDept;
+    
+     public function jsonSerialize()
+    {
+        return array(
+            'modify' => $this->getModificado(),
+            'folder' => $this->getCarpeta(),
+            'title' => $this->getTitulo(),
+            'slug' => $this->getSlug(),
+            'content' => $this->getContenido(),
+            'priority' => $this->getPrioridad(),
+        );
+    }
 
 
 }
