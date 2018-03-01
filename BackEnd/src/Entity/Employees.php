@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="employees", indexes={@ORM\Index(name="fk_employees_department_idx", columns={"department_dept"})})
  * @ORM\Entity
  */
-class Employees
-{
+class Employees implements \JsonSerializable {
+
     /**
      * @var int
      *
@@ -66,5 +66,125 @@ class Employees
      */
     private $departmentDept;
 
+    /**
+     * @return int
+     */
+    public function getEmpNo()
+    {
+        return $this->empNo;
+    }
+
+    /**
+     * @param int $empNo
+     */
+    public function setEmpNo($empNo)
+    {
+        $this->empNo = $empNo;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * @param \DateTime $birthDate
+     */
+    public function setBirthDate($birthDate)
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getHireDate()
+    {
+        return $this->hireDate;
+    }
+
+    /**
+     * @param \DateTime $hireDate
+     */
+    public function setHireDate($hireDate)
+    {
+        $this->hireDate = $hireDate;
+    }
+
+    /**
+     * @return \Department
+     */
+    public function getDepartmentDept() : Department
+    {
+        return $this->departmentDept;
+    }
+
+    /**
+     * @param \Department $departmentDept
+     */
+    public function setDepartmentDept(Department $departmentDept)
+    {
+        $this->departmentDept = $departmentDept;
+    }
+    
+    
+    public function jsonSerialize() {
+        return [
+            'id' => $this->getEmpNo(),
+            'firstName' => $this->getFirstName(),
+            'deparment' => $this->getDepartmentDept()
+        ];
+    }
 
 }

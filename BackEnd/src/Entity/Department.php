@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="department", uniqueConstraints={@ORM\UniqueConstraint(name="dept_name", columns={"dept_name"}), @ORM\UniqueConstraint(name="dept_UNIQUE", columns={"dept"})})
  * @ORM\Entity
  */
-class Department
-{
+class Department implements \JsonSerializable {
+
     /**
      * @var string
      *
@@ -28,5 +28,39 @@ class Department
      */
     private $deptName;
 
+    /**
+     * @return string
+     */
+    public function getDept() {
+        return $this->dept;
+    }
+
+    /**
+     * @param string $dept
+     */
+    public function setDept($dept) {
+        $this->dept = $dept;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeptName() {
+        return $this->deptName;
+    }
+
+    /**
+     * @param string $deptName
+     */
+    public function setDeptName($deptName) {
+        $this->deptName = $deptName;
+    }
+
+    public function jsonSerialize() {
+        return [
+            'dept' => $this->getDept(),
+            'deptName' => $this->getDeptName()
+        ];
+    }
 
 }

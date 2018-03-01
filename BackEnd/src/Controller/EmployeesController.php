@@ -8,14 +8,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Employees;
+use App\Repository\EmployeesRepository;
 
 class EmployeesController extends Controller {
+
+    private $employeesRepository;
+
+    public function __construct(EmployeesRepository $employeesRepository)
+    {
+        $this->employeesRepository = $employeesRepository;
+    }
 
     /**
      * @Route("/employees", methods="GET")
      */
     public function employees() {
-        return $this->json(['msg' => 'ok'], 200);
+        $employees = $this->employeesRepository->find([
+            'limit' => 30
+        ]);
+        return $employees
+            ? $this->json(['employee' => $employees])
+            : $this->json(['employee' => null], 404);
     }
 
     /**

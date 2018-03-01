@@ -2,8 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\User\User;
-use App\Entity\Item;
+use App\Entity\Employees;
 
 use Doctrine\ORM\EntityManager;
 
@@ -25,30 +24,21 @@ class EmployeesRepository {
         return $users;
     }
 
-    public function filter(array $params = null) {
+    public function find(array $params = null) {
 
-        $username = isset($params['username']) ? isset($params['username']) : '';
-        
-        $maxResults = isset($params['maxResults']) ? $params['maxResults'] : 30;
+        $firstName = isset($params['firstName']) ? isset($params['firstName']) : '';
+        $limit = isset($params['limit']) ? $params['limit'] : 30 ;
         $firstResult = isset($params['firstResult']) ? $params['firstResult'] : 0;
-        
-        $rol = isset($params['rol']) ? $params['rol'] : null;
-        $col = isset($params['col']) ? $params['col'] : 'id';
-        
-        $order = isset($params['order']) ? $params['order'] : 'DESC';
+        $orderBy = isset($params['orderBy']) ? $params['orderBy'] : 'empNo';
+        $order = isset($params['order']) ? $params['order'] : 'ASC';
 
-        $query = $this->em->getRepository(User::class)
+        $query = $this->em->getRepository(Employees::class)
                 ->createQueryBuilder('p')
-                ->where('p.username LIKE :username')
-                ->setParameter('username', "%$username%");
-        
-        if ($rol) {
-            $query->andwhere('p.rol = :rol')
-                    ->setParameter('rol', "$rol");
-        }
+                ->where('p.firstName LIKE :firstName')
+                ->setParameter('firstName', "%$firstName%");
 
-        $query->orderBy("p.$col", $order);
-        $query->setMaxResults($maxResults);
+        $query->orderBy("p.$orderBy", $order);
+        $query->setMaxResults($limit);
         $query->setFirstResult($firstResult);
 
         return $query->getQuery()->execute();
