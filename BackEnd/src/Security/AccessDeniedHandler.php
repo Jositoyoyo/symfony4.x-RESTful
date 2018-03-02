@@ -13,7 +13,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface {
     public function handle(Request $request, AccessDeniedException $accessDeniedException) {
         return new JsonResponse([
             'err' => 'error',
-            'msg' => 'Acceso denegado'
+            'msg' => 'Acceso denegado'//cambiar por idioma
                 ], 403);
     }
 
