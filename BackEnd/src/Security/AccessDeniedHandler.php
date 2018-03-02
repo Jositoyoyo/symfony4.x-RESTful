@@ -8,14 +8,13 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Authorization\AccessDeniedHandlerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class AccessDeniedHandler implements AccessDeniedHandlerInterface
-{
-    public function handle(Request $request, AccessDeniedException $accessDeniedException)
-    {
+class AccessDeniedHandler implements AccessDeniedHandlerInterface {
+
+    public function handle(Request $request, AccessDeniedException $accessDeniedException) {
         return new JsonResponse([
             'err' => 'error',
             'msg' => 'Acceso denegado'
-            ], 403);
+                ], 403);
     }
+
 }
- 
